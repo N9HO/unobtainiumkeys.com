@@ -276,8 +276,12 @@
     </div>
 
     <form id="notify" novalidate>
-      <input type="email" name="email" placeholder="your@email.com" aria-label="Email address" required />
+      <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="your@email.com" aria-label="Email address" autocomplete="email" required />
       <button type="submit">Notify me</button>
+      <!-- Mailchimp anti-bot honeypot: must remain empty -->
+      <div aria-hidden="true" style="position:absolute; left:-5000px;">
+        <input type="text" name="b_293c281b5a73bfa85b93b2f16_3b19d67185" tabindex="-1" value="" autocomplete="off" />
+      </div>
     </form>
     <p class="note" id="note">Be first to know. No spam — just the launch.</p>
   </div>
@@ -287,24 +291,73 @@
   </footer>
 
   <script>
-    const form = document.getElementById('notify');
-    const note = document.getElementById('note');
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const email = form.email.value.trim();
-      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      if (!ok) {
-        note.textContent = 'Hmm — that email doesn’t look right.';
-        note.style.color = '#c98';
-        form.email.focus();
-        return;
+    (function () {
+      // Mailchimp audience: unobtainiumkeys (us3)
+      var MC_URL = 'https://unobtainiumkeys.us3.list-manage.com/subscribe/post-json' +
+                   '?u=293c281b5a73bfa85b93b2f16&id=3b19d67185&f_id=001003e2f0';
+
+      var form  = document.getElementById('notify');
+      var note  = document.getElementById('note');
+      var btn   = form.querySelector('button');
+      var input = form.querySelector('input[type=email]');
+      var hp    = form.querySelector('input[name^="b_"]');
+      var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      function say(msg, color) { note.textContent = msg; note.style.color = color || '#8a8a8a'; }
+      function strip(html) { var d = document.createElement('div'); d.innerHTML = html; return (d.textContent || '').trim(); }
+
+      // Mailchimp only accepts JSONP cross-origin, so submit via a callback <script> tag.
+      function jsonp(url, cb) {
+        var name = 'mc_cb_' + Date.now();
+        var s = document.createElement('script');
+        window[name] = function (data) { delete window[name]; s.remove(); cb(data); };
+        s.onerror = function () { delete window[name]; s.remove(); cb(null); };
+        s.src = url + '&c=' + name;
+        document.body.appendChild(s);
       }
-      // TODO: wire to your list provider (Mailchimp / Buttondown / Formspree).
-      note.textContent = 'You’re on the list. 73 — watch your inbox.';
-      note.style.color = '#fff';
-      form.reset();
-      form.querySelector('button').textContent = 'Done';
-    });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = input.value.trim();
+        if (!emailRe.test(email)) {
+          say('Hmm — that email doesn’t look right.', '#c98');
+          input.focus();
+          return;
+        }
+
+        var prev = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        say('Sending…');
+
+        var url = MC_URL +
+                  '&EMAIL=' + encodeURIComponent(email) +
+                  '&' + encodeURIComponent(hp.name) + '=';
+
+        jsonp(url, function (data) {
+          if (data && data.result === 'success') {
+            say('You’re on the list. 73 — watch your inbox.', '#fff');
+            form.reset();
+            btn.textContent = 'Done';
+            return;
+          }
+          btn.disabled = false;
+          btn.textContent = prev;
+          if (data && data.msg) {
+            var m = strip(data.msg).replace(/^\d+\s*-\s*/, '');
+            if (/already subscribed/i.test(m)) {
+              say('You’re already on the list. 73!', '#fff');
+              btn.textContent = 'Done';
+              btn.disabled = true;
+            } else {
+              say(m, '#c98');
+            }
+          } else {
+            say('Something went wrong — try again in a moment.', '#c98');
+          }
+        });
+      });
+    })();
   </script>
 </body>
 </html>
