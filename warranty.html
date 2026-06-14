@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Warranty — Unobtainium Keys</title>
+<meta name="description" content="The Unobtainium Keys limited lifetime workmanship warranty. Built by hand, backed and serviced for life. Transferable with the key." />
+
+<meta property="og:title" content="Warranty — Unobtainium Keys" />
+<meta property="og:description" content="Built by hand, backed and serviced for life. A limited lifetime workmanship warranty, transferable with the key." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink: #ffffff;
+    --muted: #8a8a8a;
+    --soft: #b9b9b9;
+    --line: rgba(255, 255, 255, 0.55);
+    --hair: rgba(255, 255, 255, 0.14);
+    --panel: rgba(255, 255, 255, 0.035);
+    --bg: #000000;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Jost', 'Century Gothic', system-ui, sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.6;
+    padding: 0 24px 10vh;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 0 0;
+  }
+
+  .mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .mark .chip {
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid var(--line);
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+  .mark .wordmark {
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+  }
+
+  .back {
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .back:hover { color: var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    text-align: center;
+    padding: clamp(48px, 12vh, 110px) 0 clamp(40px, 7vh, 64px);
+    border-bottom: 1px solid var(--hair);
+  }
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.42em;
+    text-indent: 0.42em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    margin-top: 20px;
+    font-size: clamp(30px, 6.5vw, 50px);
+    font-weight: 200;
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+  }
+  .hero h1 em { font-style: normal; font-weight: 400; }
+  .hero .sub {
+    margin: 18px auto 0;
+    max-width: 480px;
+    font-size: clamp(15px, 4vw, 18px);
+    font-weight: 300;
+    color: var(--soft);
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 26px;
+    padding: 9px 18px;
+    border: 1px solid var(--hair);
+    border-radius: 999px;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--soft);
+  }
+  .badge svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.4; }
+
+  /* ---------- Pillar trio ---------- */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    padding: clamp(36px, 6vh, 56px) 0;
+    border-bottom: 1px solid var(--hair);
+  }
+  .pillar {
+    border: 1px solid var(--hair);
+    border-radius: 16px;
+    padding: 22px 20px;
+    background: var(--panel);
+  }
+  .pillar svg { width: 24px; height: 24px; stroke: var(--ink); fill: none; stroke-width: 1.3; opacity: 0.9; }
+  .pillar h3 {
+    margin: 14px 0 8px;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+  }
+  .pillar p {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ---------- Warranty body ---------- */
+  .body { padding: clamp(36px, 6vh, 56px) 0 0; }
+
+  .section { padding: 26px 0; border-bottom: 1px solid var(--hair); }
+  .section:last-of-type { border-bottom: none; }
+  .section.panel {
+    background: var(--panel);
+    border: 1px solid var(--hair);
+    border-radius: 16px;
+    padding: 26px 26px;
+    margin: 8px 0;
+  }
+
+  .section h2 {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .section h2 svg { width: 17px; height: 17px; stroke: var(--muted); fill: none; stroke-width: 1.4; }
+  .section p {
+    font-size: 15.5px;
+    font-weight: 300;
+    color: var(--soft);
+    line-height: 1.75;
+  }
+  .section p + p { margin-top: 12px; }
+
+  /* ---------- CTA ---------- */
+  .cta {
+    text-align: center;
+    padding: clamp(44px, 8vh, 72px) 0 clamp(20px, 4vh, 40px);
+  }
+  .cta p {
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 20px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--ink);
+    color: #000;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    text-decoration: none;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:active { transform: scale(0.98); }
+  .btn svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    text-align: center;
+    padding-top: 36px;
+    border-top: 1px solid var(--hair);
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    color: #6f6f6f;
+  }
+  footer a { color: inherit; text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+  .legal {
+    margin-top: 12px;
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    color: #5a5a5a;
+    text-transform: none;
+  }
+
+  @media (max-width: 620px) {
+    .pillars { grid-template-columns: 1fr; }
+    .topbar .wordmark { display: none; }
+  }
+  @media (max-width: 380px) {
+    .pillar, .section.panel { border-radius: 12px; }
+  }
+</style>
+</head>
+<body>
+ <div class="wrap">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <a class="mark" href="/" aria-label="Unobtainium Keys home">
+      <span class="chip">Un</span>
+      <span class="wordmark">Unobtainium Keys</span>
+    </a>
+    <a class="back" href="/">&larr; Home</a>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <p class="eyebrow">Our promise</p>
+    <h1>Built by hand,<br /><em>backed and serviced</em> for life.</h1>
+    <p class="sub">A limited lifetime workmanship warranty, plus repair and maintenance for as long as we&rsquo;re here.</p>
+    <span class="badge">
+      <svg viewBox="0 0 24 24"><path d="M4 12h12M12 6l6 6-6 6"/></svg>
+      Transferable — the warranty travels with the key
+    </span>
+  </header>
+
+  <!-- Pillars -->
+  <section class="pillars" aria-label="Warranty highlights">
+    <div class="pillar">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 7.5 21l4.5-2.6L16.5 21 15 13.5"/></svg>
+      <h3>Lifetime workmanship</h3>
+      <p>Free from defects in materials and workmanship for as long as we&rsquo;re in operation.</p>
+    </div>
+    <div class="pillar">
+      <svg viewBox="0 0 24 24"><path d="M4 8h13M14 5l3 3-3 3M20 16H7M10 13l-3 3 3 3"/></svg>
+      <h3>Transfers with the key</h3>
+      <p>A used Unobtainium is still a protected one — coverage follows the key, not the buyer.</p>
+    </div>
+    <div class="pillar">
+      <svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2 2.5-2.5z"/></svg>
+      <h3>Serviced for life</h3>
+      <p>Repair and maintenance available even when a key falls outside warranty.</p>
+    </div>
+  </section>
+
+  <!-- Body -->
+  <main class="body">
+
+    <section class="section">
+      <h2><svg viewBox="0 0 24 24"><path d="M12 3l8 3v5c0 4.5-3 8-8 10-5-2-8-5.5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>What we warrant</h2>
+      <p>Every Unobtainium key is designed, machined, finished, and inspected by hand. We warrant each key to be free from defects in materials and workmanship for as long as Unobtainium Keys remains in operation as a company.</p>
+    </section>
+
+    <section class="section">
+      <h2><svg viewBox="0 0 24 24"><path d="M4 8h13M14 5l3 3-3 3M20 16H7M10 13l-3 3 3 3"/></svg>Transferable</h2>
+      <p>This warranty covers the key, not just its first owner. If your key changes hands, the warranty goes with it.</p>
+    </section>
+
+    <section class="section">
+      <h2><svg viewBox="0 0 24 24"><path d="M4 7a8 8 0 0 1 14-3M20 4v4h-4M20 17a8 8 0 0 1-14 3M4 20v-4h4"/></svg>What we&rsquo;ll do</h2>
+      <p>If a defect in our materials or workmanship appears, we will repair or replace the key at our discretion, at no charge to you. When a claim is deemed a genuine warranty issue, we cover shipping both ways.</p>
+    </section>
+
+    <section class="section panel">
+      <h2><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>Wear and maintenance</h2>
+      <p>Any component that moves or flexes in normal operation — including pivots, contacts, springs, paddle arms, and adjustment hardware — is considered a wear item. We warrant wear items against defects in materials and manufacture, but not against wear, fatigue, or loss of adjustment from use. Replacement wear parts and routine service are always available from us.</p>
+    </section>
+
+    <section class="section">
+      <h2><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>What voids the warranty</h2>
+      <p>Modifying a key voids its warranty permanently, and the warranty does not transfer to any key that has been modified. Normal disassembly for cleaning, adjustment, or replacing our wear parts is not a modification — modification means altering, drilling, re-machining, refinishing, or substituting non-Unobtainium parts.</p>
+      <p>The warranty also does not cover damage from drops, misuse, neglect, corrosion, or service performed outside our shop.</p>
+    </section>
+
+    <section class="section">
+      <h2><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg>We can still help</h2>
+      <p>Even if a key has been modified, neglected, or damaged, we offer repair services to bring it back to life. Contact us for an estimate.</p>
+    </section>
+
+    <section class="section">
+      <h2><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg>Making a claim</h2>
+      <p>Contact us before sending anything back so we can sort out whether it&rsquo;s a warranty repair or a service repair. For valid warranty claims, we pay inbound and outbound shipping. For non-warranty repairs, the customer covers shipping; we&rsquo;ll quote any parts and labor before starting work.</p>
+    </section>
+
+  </main>
+
+  <!-- CTA -->
+  <div class="cta">
+    <p>Questions, or ready to start a claim?</p>
+    <a class="btn" href="mailto:hello@unobtainiumkeys.com?subject=Warranty%20enquiry">
+      <svg viewBox="0 0 24 24"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg>
+      Contact us
+    </a>
+  </div>
+
+  <footer>
+    <a href="https://unobtainiumkeys.com">unobtainiumkeys.com</a>
+    <div class="legal">This limited warranty gives you specific rights; you may also have other rights that vary by jurisdiction.</div>
+  </footer>
+
+ </div>
+</body>
+</html>
