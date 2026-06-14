@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Who we are — Unobtainium Keys</title>
+<meta name="description" content="The people behind Unobtainium Keys — operators building heirloom-grade CW Morse keys for operators." />
+
+<meta property="og:title" content="Who we are — Unobtainium Keys" />
+<meta property="og:description" content="Operators building heirloom-grade CW Morse keys for operators." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink: #ffffff;
+    --muted: #8a8a8a;
+    --soft: #b9b9b9;
+    --line: rgba(255, 255, 255, 0.55);
+    --hair: rgba(255, 255, 255, 0.14);
+    --panel: rgba(255, 255, 255, 0.035);
+    --bg: #000000;
+    --todo: #c9a36b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Jost', 'Century Gothic', system-ui, sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.6;
+    padding: 0 24px 10vh;
+  }
+
+  .wrap { width: 100%; max-width: 760px; margin: 0 auto; }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 0 0;
+  }
+  .mark { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+  .mark .chip {
+    width: 40px; height: 40px;
+    border: 1.5px solid var(--line);
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; font-weight: 300; letter-spacing: -0.01em;
+  }
+  .mark .wordmark { font-size: 14px; font-weight: 300; letter-spacing: 0.26em; text-transform: uppercase; }
+  .back {
+    font-size: 12px; font-weight: 300; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--muted); text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .back:hover { color: var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    text-align: center;
+    padding: clamp(48px, 12vh, 110px) 0 clamp(40px, 7vh, 64px);
+    border-bottom: 1px solid var(--hair);
+  }
+  .eyebrow {
+    font-size: 12px; font-weight: 400; letter-spacing: 0.42em;
+    text-indent: 0.42em; color: var(--muted); text-transform: uppercase;
+  }
+  .hero h1 {
+    margin-top: 20px;
+    font-size: clamp(30px, 6.5vw, 50px);
+    font-weight: 200; line-height: 1.1; letter-spacing: 0.01em;
+  }
+  .hero h1 em { font-style: normal; font-weight: 400; }
+  .hero .sub {
+    margin: 18px auto 0; max-width: 500px;
+    font-size: clamp(15px, 4vw, 18px); font-weight: 300; color: var(--soft);
+  }
+
+  /* ---------- Story ---------- */
+  .story { padding: clamp(36px, 6vh, 56px) 0; border-bottom: 1px solid var(--hair); }
+  .story h2, .people h2, .values h2 {
+    font-size: 13px; font-weight: 400; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--ink); margin-bottom: 18px;
+  }
+  .story p { font-size: 16px; font-weight: 300; color: var(--soft); line-height: 1.8; }
+  .story p + p { margin-top: 16px; }
+
+  /* ---------- People ---------- */
+  .people { padding: clamp(36px, 6vh, 56px) 0; border-bottom: 1px solid var(--hair); }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .person {
+    border: 1px solid var(--hair);
+    border-radius: 16px;
+    padding: 24px 22px;
+    background: var(--panel);
+  }
+  .person .avatar {
+    width: 52px; height: 52px; border-radius: 50%;
+    border: 1.5px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; font-weight: 300; letter-spacing: 0.02em; color: var(--soft);
+    margin-bottom: 16px;
+  }
+  .person .avatar svg { width: 24px; height: 24px; stroke: var(--soft); fill: none; stroke-width: 1.3; }
+  .person .name { font-size: 17px; font-weight: 400; letter-spacing: 0.04em; }
+  .person .call {
+    font-size: 12px; font-weight: 400; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--muted); margin: 4px 0 14px;
+  }
+  .person .role { font-size: 13.5px; font-weight: 300; color: var(--soft); line-height: 1.65; }
+
+  /* ---------- Values ---------- */
+  .values { padding: clamp(36px, 6vh, 56px) 0; }
+  .vrow {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 20px 0; border-bottom: 1px solid var(--hair);
+  }
+  .vrow:last-child { border-bottom: none; }
+  .vrow svg { width: 22px; height: 22px; stroke: var(--ink); fill: none; stroke-width: 1.3; opacity: 0.9; flex: none; margin-top: 2px; }
+  .vrow h3 { font-size: 15px; font-weight: 400; letter-spacing: 0.05em; margin-bottom: 5px; }
+  .vrow p { font-size: 14.5px; font-weight: 300; color: var(--muted); line-height: 1.65; }
+
+  /* ---------- Editable placeholder marker ---------- */
+  .ph {
+    color: var(--todo);
+    border-bottom: 1px dashed rgba(201, 163, 107, 0.5);
+    font-style: italic;
+  }
+
+  /* ---------- CTA ---------- */
+  .cta { text-align: center; padding: clamp(44px, 8vh, 72px) 0 clamp(20px, 4vh, 40px); }
+  .cta p { font-size: 14px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 20px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--ink); color: #000; border-radius: 999px;
+    font-size: 14px; font-weight: 400; letter-spacing: 0.16em;
+    text-transform: uppercase; padding: 14px 28px; text-decoration: none;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:active { transform: scale(0.98); }
+  .btn svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    text-align: center; padding-top: 36px; border-top: 1px solid var(--hair);
+    font-size: 13px; font-weight: 300; letter-spacing: 0.22em; color: #6f6f6f;
+  }
+  footer a { color: inherit; text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+  footer .sep { margin: 0 12px; color: #4a4a4a; }
+
+  @media (max-width: 380px) {
+    .person, .topbar .wordmark { border-radius: 12px; }
+    .topbar .wordmark { display: none; }
+  }
+</style>
+</head>
+<body>
+ <div class="wrap">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <a class="mark" href="/" aria-label="Unobtainium Keys home">
+      <span class="chip">Un</span>
+      <span class="wordmark">Unobtainium Keys</span>
+    </a>
+    <a class="back" href="/">&larr; Home</a>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <p class="eyebrow">Who we are</p>
+    <h1>Operators building<br /><em>for operators.</em></h1>
+    <p class="sub">Unobtainium Keys makes heirloom-grade CW Morse keys for the people who still reach for a paddle when the band opens.</p>
+  </header>
+
+  <!-- Story -->
+  <section class="story">
+    <h2>Why we're here</h2>
+    <p>We're ham radio operators and CW enthusiasts. We've also been on the receiving end of empty promises and underdelivered results — and we've watched too many operators spend hard-earned money on keys and customer service that didn't come close to representing the equity being exchanged.</p>
+    <p>Unobtainium Keys is our answer to that. Three builders who couldn't find the key — or the treatment — we wanted, so we set out to make both: keys built without compromise and in small numbers, the way the great keys have always been made, backed by people who actually answer.</p>
+    <p>A key is the one piece of the station you touch every second you're on the air. It should feel like an extension of your hand and outlast the rig it sits beside. That's the bar we build to, and the reason we back every key for life.</p>
+  </section>
+
+  <!-- People -->
+  <section class="people">
+    <h2>The people</h2>
+    <div class="grid">
+
+      <div class="person">
+        <div class="avatar"><svg viewBox="0 0 24 24"><path d="M12 2c0 4-4 5-4 9a4 4 0 0 0 8 0c0-1.6-.8-2.8-1.7-3.7.1 1.7-1 2.2-1.5 1.1.9-2.4-.3-4.6-.8-6.4z"/></svg></div>
+        <div class="name">The Firefighter</div>
+        <div class="call">Precision</div>
+        <div class="role">An aeronautical engineering degree, a firefighter's nerve, and a modeler's obsession with detail. Sweats the millimeter nobody else would notice.</div>
+      </div>
+
+      <div class="person">
+        <div class="avatar"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 9.5V20h14V9.5"/></svg></div>
+        <div class="name">The Homebuilder</div>
+        <div class="call">Feel</div>
+        <div class="role">A licensed homebuilder with a marketing degree and an ADHD hyperfixation on the way a key <em>feels</em>. If the action isn't right, nothing else matters.</div>
+      </div>
+
+      <div class="person">
+        <div class="avatar"><svg viewBox="0 0 24 24"><path d="M9 8l-4 4 4 4M15 8l4 4-4 4"/></svg></div>
+        <div class="name">The Developer</div>
+        <div class="call">Follow-through</div>
+        <div class="role">A software developer actually using his computer science degree — with a golden-retriever-like desire to please and a genuine inability to say no.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="values">
+    <h2>What we believe</h2>
+
+    <div class="vrow">
+      <svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2 2.5-2.5z"/></svg>
+      <div>
+        <h3>Made by hand, in small numbers</h3>
+        <p>Every key is machined and finished one at a time. We'd rather make a few keys right than many keys fast.</p>
+      </div>
+    </div>
+
+    <div class="vrow">
+      <svg viewBox="0 0 24 24"><path d="M12 3l8 3v5c0 4.5-3 8-8 10-5-2-8-5.5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+      <div>
+        <h3>Built to outlast us</h3>
+        <p>Materials and tolerances chosen for the long haul — a key you hand down, backed by a transferable lifetime warranty.</p>
+      </div>
+    </div>
+
+    <div class="vrow">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
+      <div>
+        <h3>Operators first</h3>
+        <p>We're on the air too. Every design decision answers to the feel under your fingers, not the spec sheet.</p>
+      </div>
+    </div>
+
+    <div class="vrow">
+      <svg viewBox="0 0 24 24"><path d="M12 3v18M16.5 7.5C16.5 6 14.5 5 12 5S7.5 6 7.5 8s2 2.8 4.5 3 4.5 1.2 4.5 3.2S14.5 19 12 19s-4.5-1-4.5-2.5"/></svg>
+      <div>
+        <h3>Worth the equity exchanged</h3>
+        <p>You earned your money the hard way. Your key — and the service behind it — should be worth every cent. No empty promises, and we answer when you reach out.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <p>Want to talk keys, or get on the list?</p>
+    <a class="btn" href="/">
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      Back to home
+    </a>
+  </div>
+
+  <footer>
+    <a href="https://unobtainiumkeys.com">unobtainiumkeys.com</a>
+    <span class="sep" aria-hidden="true">&middot;</span>
+    <a href="/who-we-are.html">Who we are</a>
+    <span class="sep" aria-hidden="true">&middot;</span>
+    <a href="/warranty.html">Warranty</a>
+  </footer>
+
+ </div>
+</body>
+</html>
