@@ -172,6 +172,90 @@
   .vrow h3 { font-size: 15px; font-weight: 400; letter-spacing: 0.05em; margin-bottom: 5px; }
   .vrow p { font-size: 14.5px; font-weight: 300; color: var(--muted); line-height: 1.65; }
 
+  /* ---------- Download button (in archive cards) ---------- */
+  .dl-btn {
+    margin-top: 16px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    width: 100%;
+    background: var(--ink); color: #000;
+    border: 1px solid var(--ink); border-radius: 999px;
+    font-family: inherit; font-size: 12.5px; font-weight: 400;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 11px 18px; cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+  }
+  .dl-btn:hover { opacity: 0.85; }
+  .dl-btn:active { transform: scale(0.98); }
+  .dl-btn svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+
+  /* ---------- Agreement modal ---------- */
+  .modal {
+    position: fixed; inset: 0; z-index: 50;
+    display: none; align-items: center; justify-content: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.72);
+    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  }
+  .modal.open { display: flex; }
+  .modal-card {
+    width: 100%; max-width: 480px; max-height: 88vh; overflow-y: auto;
+    background: #0a0a0a; border: 1px solid var(--hair);
+    border-radius: 18px; padding: 30px 28px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  }
+  .modal-eyebrow {
+    font-size: 11px; font-weight: 400; letter-spacing: 0.32em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .modal-card h2 {
+    margin-top: 12px; font-size: clamp(20px, 5vw, 25px);
+    font-weight: 200; line-height: 1.2; letter-spacing: 0.01em;
+  }
+  .modal-card h2 em { font-style: normal; font-weight: 400; }
+  .modal-card .lead { margin-top: 12px; font-size: 14px; font-weight: 300; color: var(--soft); line-height: 1.7; }
+  .agree {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin: 22px 0 6px; padding: 16px 16px;
+    border: 1px solid var(--hair); border-radius: 12px;
+    background: var(--panel); cursor: pointer;
+  }
+  .agree input {
+    flex: none; width: 20px; height: 20px; margin-top: 1px;
+    accent-color: #fff; cursor: pointer;
+  }
+  .agree span { font-size: 13.5px; font-weight: 300; color: var(--soft); line-height: 1.6; }
+  .agree span em { font-style: normal; color: var(--ink); font-weight: 400; }
+  .modal-actions { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+  .modal-actions .btn-confirm {
+    flex: 1 1 200px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    background: var(--ink); color: #000;
+    border: 1px solid var(--ink); border-radius: 999px;
+    font-family: inherit; font-size: 13px; font-weight: 400;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 13px 22px; cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+  }
+  .modal-actions .btn-confirm svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+  .modal-actions .btn-confirm:hover { opacity: 0.85; }
+  .modal-actions .btn-confirm:disabled {
+    opacity: 0.3; cursor: not-allowed; transform: none;
+  }
+  .modal-actions .btn-cancel {
+    background: transparent; color: var(--muted);
+    border: 1px solid var(--hair); border-radius: 999px;
+    font-family: inherit; font-size: 13px; font-weight: 300;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 13px 22px; cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .modal-actions .btn-cancel:hover { color: var(--ink); border-color: var(--line); }
+  .modal-fine {
+    margin-top: 18px; font-size: 11.5px; letter-spacing: 0.03em;
+    color: #5a5a5a; line-height: 1.6;
+  }
+  .modal-fine a { color: var(--muted); }
+
   /* ---------- Terms / disclaimer ---------- */
   .terms { padding: clamp(36px, 6vh, 56px) 0; border-top: 1px solid var(--hair); }
   .terms .panel {
@@ -268,7 +352,12 @@
         <div class="model">TP-3</div>
         <div class="maker">No longer produced</div>
         <div class="desc">A revered twin-paddle that hasn&rsquo;t been made in years. Rebuilt as a true solid model so its cases and paddles can live on.</div>
-        <div class="status live">&bull; Model available</div>
+        <button class="dl-btn"
+                data-download="/models/tp-3.step"
+                data-model="TP-3">
+          <svg viewBox="0 0 24 24"><path d="M12 3v11M8 10.5 12 14l4-3.5M5 16v4h14v-4"/></svg>
+          Download model
+        </button>
       </div>
 
       <div class="key">
@@ -358,7 +447,7 @@
   </section>
 
   <!-- Terms / disclaimer -->
-  <section class="terms">
+  <section class="terms" id="terms">
     <h2>The fine print</h2>
     <div class="panel">
       <h3>Free for non-commercial use</h3>
@@ -398,5 +487,97 @@
   </footer>
 
  </div>
+
+ <!-- Agreement gate (shown before any model downloads) -->
+ <div class="modal" id="dlModal" role="dialog" aria-modal="true" aria-labelledby="dlTitle" aria-hidden="true">
+   <div class="modal-card">
+     <p class="modal-eyebrow">Before you download</p>
+     <h2 id="dlTitle">One handshake, <em>operator to operator.</em></h2>
+     <p class="lead">You&rsquo;re about to download <strong id="dlModelName">this model</strong>. These files are shared in good faith to keep a silent key alive &mdash; please honor the spirit they&rsquo;re given in.</p>
+
+     <label class="agree" for="dlAgree">
+       <input type="checkbox" id="dlAgree" />
+       <span>I agree that I am downloading these designs <em>purely for personal, non-commercial use</em>, that I will <em>not share, redistribute, or sell</em> them, and that I accept the <a href="#terms" style="color:#b9b9b9;">terms of use</a> &mdash; the files are provided &ldquo;as is,&rdquo; with no warranty, and I use them at my own risk.</span>
+     </label>
+
+     <div class="modal-actions">
+       <button type="button" class="btn-confirm" id="dlConfirm" disabled>
+         <svg viewBox="0 0 24 24"><path d="M12 3v11M8 10.5 12 14l4-3.5M5 16v4h14v-4"/></svg>
+         Agree &amp; download
+       </button>
+       <button type="button" class="btn-cancel" id="dlCancel">Cancel</button>
+     </div>
+
+     <p class="modal-fine">Rights holders: if a model infringes rights you hold, <a href="mailto:hello@unobtainiumkeys.com?subject=Unobtainium%20Project%20takedown">let us know</a> and we&rsquo;ll remove it promptly. This summary is the terms of use, not legal advice.</p>
+   </div>
+ </div>
+
+ <script>
+   (function () {
+     var modal   = document.getElementById('dlModal');
+     var nameEl  = document.getElementById('dlModelName');
+     var agree   = document.getElementById('dlAgree');
+     var confirm = document.getElementById('dlConfirm');
+     var cancel  = document.getElementById('dlCancel');
+     var pending = null;        // { url, model } awaiting confirmation
+     var lastFocus = null;
+
+     function open(url, model) {
+       pending = { url: url, model: model };
+       nameEl.textContent = model || 'this model';
+       agree.checked = false;
+       confirm.disabled = true;
+       lastFocus = document.activeElement;
+       modal.classList.add('open');
+       modal.setAttribute('aria-hidden', 'false');
+       agree.focus();
+     }
+
+     function close() {
+       modal.classList.remove('open');
+       modal.setAttribute('aria-hidden', 'true');
+       pending = null;
+       if (lastFocus && lastFocus.focus) lastFocus.focus();
+     }
+
+     // Wire every download button on the page.
+     document.querySelectorAll('.dl-btn[data-download]').forEach(function (btn) {
+       btn.addEventListener('click', function () {
+         open(btn.getAttribute('data-download'), btn.getAttribute('data-model'));
+       });
+     });
+
+     agree.addEventListener('change', function () {
+       confirm.disabled = !agree.checked;
+     });
+
+     confirm.addEventListener('click', function () {
+       if (!pending || !agree.checked) return;
+       var url = pending.url;
+       var file = url.split('/').pop();
+       // Trigger the download, then record consent in this browser.
+       var a = document.createElement('a');
+       a.href = url;
+       a.download = file;
+       a.rel = 'noopener';
+       document.body.appendChild(a);
+       a.click();
+       a.remove();
+       try {
+         localStorage.setItem('up_agreed_' + (pending.model || file),
+           new Date().toISOString());
+       } catch (e) { /* storage may be unavailable; not required */ }
+       close();
+     });
+
+     cancel.addEventListener('click', close);
+     modal.addEventListener('click', function (e) {
+       if (e.target === modal) close();   // click backdrop to dismiss
+     });
+     document.addEventListener('keydown', function (e) {
+       if (e.key === 'Escape' && modal.classList.contains('open')) close();
+     });
+   })();
+ </script>
 </body>
 </html>
