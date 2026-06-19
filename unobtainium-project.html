@@ -96,7 +96,7 @@
 
   /* ---------- Story ---------- */
   .story { padding: clamp(36px, 6vh, 56px) 0; border-bottom: 1px solid var(--hair); }
-  .story h2, .archive h2, .how h2, .values h2 {
+  .story h2, .archive h2, .how h2, .values h2, .terms h2 {
     font-size: 13px; font-weight: 400; letter-spacing: 0.22em;
     text-transform: uppercase; color: var(--ink); margin-bottom: 18px;
   }
@@ -172,6 +172,23 @@
   .vrow h3 { font-size: 15px; font-weight: 400; letter-spacing: 0.05em; margin-bottom: 5px; }
   .vrow p { font-size: 14.5px; font-weight: 300; color: var(--muted); line-height: 1.65; }
 
+  /* ---------- Terms / disclaimer ---------- */
+  .terms { padding: clamp(36px, 6vh, 56px) 0; border-top: 1px solid var(--hair); }
+  .terms .panel {
+    background: var(--panel); border: 1px solid var(--hair);
+    border-radius: 16px; padding: 26px 26px;
+  }
+  .terms h3 {
+    font-size: 13.5px; font-weight: 400; letter-spacing: 0.04em;
+    color: var(--ink); margin: 20px 0 6px;
+  }
+  .terms h3:first-of-type { margin-top: 0; }
+  .terms p { font-size: 13.5px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+  .terms .fine {
+    margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--hair);
+    font-size: 11.5px; letter-spacing: 0.04em; color: #5a5a5a; line-height: 1.6;
+  }
+
   /* ---------- CTA ---------- */
   .cta { text-align: center; padding: clamp(44px, 8vh, 72px) 0 clamp(20px, 4vh, 40px); }
   .cta h2 {
@@ -225,7 +242,7 @@
     <p class="sub">A growing archive of solid, true-to-life CAD models of legendary CW keys that no longer exist &mdash; preserved and given freely, so the keys that came before us never truly fall silent.</p>
     <span class="badge">
       <svg viewBox="0 0 24 24"><path d="M12 3v8M8.5 7.5 12 11l3.5-3.5M5 14v5h14v-5"/></svg>
-      Free to download &mdash; solid models, no strings
+      Free to download &mdash; for non-commercial use
     </span>
   </header>
 
@@ -338,6 +355,26 @@
       </div>
     </div>
 
+  </section>
+
+  <!-- Terms / disclaimer -->
+  <section class="terms">
+    <h2>The fine print</h2>
+    <div class="panel">
+      <h3>Free for non-commercial use</h3>
+      <p>These models are offered free of charge for personal, non-commercial projects &mdash; restoring your own key, building a case or paddle for your own station, learning, and tinkering. They are not to be sold, nor used to manufacture keys or parts for sale, without separate written permission.</p>
+
+      <h3>We don&rsquo;t own these designs</h3>
+      <p>The original keys are the work and property of their respective makers. We claim no ownership of, affiliation with, or endorsement by any original manufacturer, brand, or estate. Names and models are referenced only to identify the hardware being preserved. Our CAD files are independent reconstructions created for documentation and repair, and any trademarks remain the property of their owners.</p>
+
+      <h3>Provided &ldquo;as is&rdquo;</h3>
+      <p>Every model is shared &ldquo;as is,&rdquo; without warranty of any kind &mdash; express or implied &mdash; including accuracy, fitness for a particular purpose, or non-infringement. Dimensions are our best effort and may differ from any original. You are responsible for verifying everything before you cut, print, or machine anything.</p>
+
+      <h3>You assume the risk</h3>
+      <p>By downloading or using a model you accept full responsibility for how you use it, including ensuring you have the right to reproduce any given design in your jurisdiction. To the fullest extent permitted by law, Unobtainium Keys and its members are not liable for any loss, damage, or claim arising from the use of these files, and you agree to hold us harmless from any such claim.</p>
+
+      <p class="fine">Spot an error, or believe a model infringes rights you hold? Reach out and we&rsquo;ll correct or remove it promptly. This notice is a plain-language summary of the terms of use, not legal advice.</p>
+    </div>
   </section>
 
   <!-- CTA -->
