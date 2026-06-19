@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Unobtainium Project — Unobtainium Keys</title>
+<meta name="description" content="Free, solid CAD models of legendary CW keys that no longer exist — preserved so operators can build cases, replacement paddles, and keep silent keys on the air." />
+
+<meta property="og:title" content="The Unobtainium Project — Unobtainium Keys" />
+<meta property="og:description" content="Preserving the legendary keys that came before us. Free, solid CAD models for builders, restorers, and the operators who keep the legacy on the air." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink: #ffffff;
+    --muted: #8a8a8a;
+    --soft: #b9b9b9;
+    --line: rgba(255, 255, 255, 0.55);
+    --hair: rgba(255, 255, 255, 0.14);
+    --panel: rgba(255, 255, 255, 0.035);
+    --bg: #000000;
+    --todo: #c9a36b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Jost', 'Century Gothic', system-ui, sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.6;
+    padding: 0 24px 10vh;
+  }
+
+  .wrap { width: 100%; max-width: 760px; margin: 0 auto; }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 0 0;
+  }
+  .mark { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+  .mark .chip {
+    width: 40px; height: 40px;
+    border: 1.5px solid var(--line);
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; font-weight: 300; letter-spacing: -0.01em;
+  }
+  .mark .wordmark { font-size: 14px; font-weight: 300; letter-spacing: 0.26em; text-transform: uppercase; }
+  .back {
+    font-size: 12px; font-weight: 300; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--muted); text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .back:hover { color: var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    text-align: center;
+    padding: clamp(48px, 12vh, 110px) 0 clamp(40px, 7vh, 64px);
+    border-bottom: 1px solid var(--hair);
+  }
+  .eyebrow {
+    font-size: 12px; font-weight: 400; letter-spacing: 0.42em;
+    text-indent: 0.42em; color: var(--muted); text-transform: uppercase;
+  }
+  .hero h1 {
+    margin-top: 20px;
+    font-size: clamp(30px, 6.5vw, 50px);
+    font-weight: 200; line-height: 1.1; letter-spacing: 0.01em;
+  }
+  .hero h1 em { font-style: normal; font-weight: 400; }
+  .hero .sub {
+    margin: 18px auto 0; max-width: 520px;
+    font-size: clamp(15px, 4vw, 18px); font-weight: 300; color: var(--soft);
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 9px;
+    margin-top: 26px; padding: 9px 18px;
+    border: 1px solid var(--hair); border-radius: 999px;
+    font-size: 12px; font-weight: 400; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--soft);
+  }
+  .badge svg { width: 15px; height: 15px; stroke: var(--soft); fill: none; stroke-width: 1.5; }
+
+  /* ---------- Story ---------- */
+  .story { padding: clamp(36px, 6vh, 56px) 0; border-bottom: 1px solid var(--hair); }
+  .story h2, .archive h2, .how h2, .values h2 {
+    font-size: 13px; font-weight: 400; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--ink); margin-bottom: 18px;
+  }
+  .story p { font-size: 16px; font-weight: 300; color: var(--soft); line-height: 1.85; }
+  .story p + p { margin-top: 16px; }
+  .story em { font-style: normal; color: var(--ink); font-weight: 400; }
+  .pull {
+    margin: 30px 0 4px; padding: 4px 0 4px 22px;
+    border-left: 2px solid var(--line);
+    font-size: clamp(18px, 4.6vw, 22px); font-weight: 200;
+    line-height: 1.5; color: var(--ink); letter-spacing: 0.01em;
+  }
+
+  /* ---------- Archive (featured keys) ---------- */
+  .archive { padding: clamp(36px, 6vh, 56px) 0; border-bottom: 1px solid var(--hair); }
+  .archive .lead { font-size: 15px; font-weight: 300; color: var(--muted); margin-bottom: 22px; max-width: 540px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .key {
+    border: 1px solid var(--hair);
+    border-radius: 16px;
+    padding: 24px 22px;
+    background: var(--panel);
+    display: flex; flex-direction: column;
+  }
+  .key .glyph {
+    width: 46px; height: 46px; border-radius: 11px;
+    border: 1.5px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .key .glyph svg { width: 24px; height: 24px; stroke: var(--soft); fill: none; stroke-width: 1.3; }
+  .key .model { font-size: 17px; font-weight: 400; letter-spacing: 0.04em; }
+  .key .maker {
+    font-size: 12px; font-weight: 400; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--muted); margin: 4px 0 12px;
+  }
+  .key .desc { font-size: 13.5px; font-weight: 300; color: var(--soft); line-height: 1.7; }
+  .key .status {
+    margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--hair);
+    font-size: 11.5px; font-weight: 400; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .key .status.live { color: #cfe8cf; }
+
+  /* ---------- How it works ---------- */
+  .how { padding: clamp(36px, 6vh, 56px) 0; border-bottom: 1px solid var(--hair); }
+  .steprow {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 20px 0; border-bottom: 1px solid var(--hair);
+  }
+  .steprow:last-child { border-bottom: none; }
+  .steprow .num {
+    flex: none; width: 30px; height: 30px; border-radius: 50%;
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 400; color: var(--soft); margin-top: 1px;
+  }
+  .steprow h3 { font-size: 15px; font-weight: 400; letter-spacing: 0.05em; margin-bottom: 5px; }
+  .steprow p { font-size: 14.5px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+  /* ---------- Values ---------- */
+  .values { padding: clamp(36px, 6vh, 56px) 0; }
+  .vrow {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 20px 0; border-bottom: 1px solid var(--hair);
+  }
+  .vrow:last-child { border-bottom: none; }
+  .vrow svg { width: 22px; height: 22px; stroke: var(--ink); fill: none; stroke-width: 1.3; opacity: 0.9; flex: none; margin-top: 2px; }
+  .vrow h3 { font-size: 15px; font-weight: 400; letter-spacing: 0.05em; margin-bottom: 5px; }
+  .vrow p { font-size: 14.5px; font-weight: 300; color: var(--muted); line-height: 1.65; }
+
+  /* ---------- CTA ---------- */
+  .cta { text-align: center; padding: clamp(44px, 8vh, 72px) 0 clamp(20px, 4vh, 40px); }
+  .cta h2 {
+    font-size: clamp(22px, 5vw, 30px); font-weight: 200;
+    line-height: 1.2; margin-bottom: 14px; letter-spacing: 0.01em;
+  }
+  .cta h2 em { font-style: normal; font-weight: 400; }
+  .cta p { font-size: 14px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 22px; max-width: 460px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--ink); color: #000; border-radius: 999px;
+    font-size: 14px; font-weight: 400; letter-spacing: 0.16em;
+    text-transform: uppercase; padding: 14px 28px; text-decoration: none;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:active { transform: scale(0.98); }
+  .btn svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    text-align: center; padding-top: 36px; border-top: 1px solid var(--hair);
+    font-size: 13px; font-weight: 300; letter-spacing: 0.22em; color: #6f6f6f;
+  }
+  footer a { color: inherit; text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+  footer .sep { margin: 0 12px; color: #4a4a4a; }
+
+  @media (max-width: 380px) {
+    .key, .topbar .wordmark { border-radius: 12px; }
+    .topbar .wordmark { display: none; }
+  }
+</style>
+</head>
+<body>
+ <div class="wrap">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <a class="mark" href="/" aria-label="Unobtainium Keys home">
+      <span class="chip">Un</span>
+      <span class="wordmark">Unobtainium Keys</span>
+    </a>
+    <a class="back" href="/">&larr; Home</a>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <p class="eyebrow">The Unobtainium Project</p>
+    <h1>The keys are gone.<br /><em>The legacy isn&rsquo;t.</em></h1>
+    <p class="sub">A growing archive of solid, true-to-life CAD models of legendary CW keys that no longer exist &mdash; preserved and given freely, so the keys that came before us never truly fall silent.</p>
+    <span class="badge">
+      <svg viewBox="0 0 24 24"><path d="M12 3v8M8.5 7.5 12 11l3.5-3.5M5 14v5h14v-5"/></svg>
+      Free to download &mdash; solid models, no strings
+    </span>
+  </header>
+
+  <!-- Story -->
+  <section class="story">
+    <h2>Why we built this</h2>
+    <p>Every operator who keys up today is standing on the shoulders of giants. The benchmakers and basement machinists, the engineers who chased a perfect contact across a lifetime, the elmers who handed down a paddle along with the patience to use it &mdash; they built the feel we all reach for. Many of them are <em>silent keys</em> now. Their workbenches went quiet; their tooling was scattered; and one by one, the keys they made slipped out of the world.</p>
+    <p>A great key is not just brass and steel. It is the distilled judgment of the man who made it &mdash; the radius he settled on after a thousand contacts, the heft he chose because it felt right under a working fist. When the last of a model crumbles, restoration becomes guesswork, and a piece of the craft is lost for good. We refuse to let that happen quietly.</p>
+
+    <p class="pull">We cannot bring the makers back. But we can keep their work measured, honored, and within reach &mdash; so no operator ever has to let a legend rot for want of a single missing paddle.</p>
+
+    <p>So we measure them. We reverse-engineer the survivors &mdash; calipers, scans, and stubborn patience &mdash; and rebuild each one as a clean, solid CAD model, dimensioned the way its maker would have drawn it. Then we give it away. No paywall, no gatekeeping. This is our way of repaying a debt to the men who came before us, and of putting something back into the hobby that gave us so much.</p>
+  </section>
+
+  <!-- Archive -->
+  <section class="archive">
+    <h2>The archive</h2>
+    <p class="lead">Solid models you can drop straight into your CAD package &mdash; build a case, machine a replacement paddle, restore a relic, or simply study how the greats did it.</p>
+    <div class="grid">
+
+      <div class="key">
+        <div class="glyph"><svg viewBox="0 0 24 24"><path d="M3 14h7l2-3 5 3h4M6 14v3M18 17v-3"/><circle cx="6" cy="11" r="2"/></svg></div>
+        <div class="model">TP-3</div>
+        <div class="maker">No longer produced</div>
+        <div class="desc">A revered twin-paddle that hasn&rsquo;t been made in years. Rebuilt as a true solid model so its cases and paddles can live on.</div>
+        <div class="status live">&bull; Model available</div>
+      </div>
+
+      <div class="key">
+        <div class="glyph"><svg viewBox="0 0 24 24"><path d="M4 16h16M7 16v-4l5-2 5 2v4"/><circle cx="12" cy="7" r="1.5"/></svg></div>
+        <div class="model">More to come</div>
+        <div class="maker">In the works</div>
+        <div class="desc">We&rsquo;re measuring and modeling more lost keys as we get our hands on clean survivors. Have one worth saving? Reach out.</div>
+        <div class="status">&bull; On the bench</div>
+      </div>
+
+      <div class="key">
+        <div class="glyph"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 8l7-5 7 5M5 8v8l7 5 7-5V8"/></svg></div>
+        <div class="model">Nominate a key</div>
+        <div class="maker">Community-led</div>
+        <div class="desc">The archive grows by the hobby, for the hobby. Tell us which silent legend deserves to be preserved next.</div>
+        <div class="status">&bull; Open call</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how">
+    <h2>How to use the models</h2>
+
+    <div class="steprow">
+      <div class="num">1</div>
+      <div>
+        <h3>Download the solid model</h3>
+        <p>Each key is shared as a watertight solid &mdash; true geometry, not a hollow mesh &mdash; ready to open in the CAD tool you already use.</p>
+      </div>
+    </div>
+
+    <div class="steprow">
+      <div class="num">2</div>
+      <div>
+        <h3>Build, fit, or restore</h3>
+        <p>Reference the exact dimensions to machine a replacement paddle, design a custom base or case, or 3D-print a part that&rsquo;s no longer sold anywhere on earth.</p>
+      </div>
+    </div>
+
+    <div class="steprow">
+      <div class="num">3</div>
+      <div>
+        <h3>Put a legend back on the air</h3>
+        <p>Bring a tired key back to life, or carry its lines forward into something new. Either way, the maker&rsquo;s work keys up again.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="values">
+    <h2>The pact we keep</h2>
+
+    <div class="vrow">
+      <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9-9a4.5 4.5 0 0 1 8.1-2.7l.9 1.2.9-1.2A4.5 4.5 0 0 1 21 12c-2 4.5-9 9-9 9z"/></svg>
+      <div>
+        <h3>Honor the silent keys</h3>
+        <p>Every model is a small act of remembrance &mdash; the work of an SK, measured with respect and carried forward intact.</p>
+      </div>
+    </div>
+
+    <div class="vrow">
+      <svg viewBox="0 0 24 24"><path d="M12 3v8M8.5 7.5 12 11l3.5-3.5M5 14v5h14v-5"/></svg>
+      <div>
+        <h3>Free, and freely given</h3>
+        <p>No paywall stands between an operator and a part he needs. We give these models back to the community, the way the craft was given to us.</p>
+      </div>
+    </div>
+
+    <div class="vrow">
+      <svg viewBox="0 0 24 24"><path d="M3 21V8l5-3 5 3M13 21V11l4-2 4 2v10M3 21h18M7 12v2M17 14v2"/></svg>
+      <div>
+        <h3>Faithful to the maker</h3>
+        <p>We model what was, not what we&rsquo;d change. The geometry stays true to the original so restorations stay honest.</p>
+      </div>
+    </div>
+
+    <div class="vrow">
+      <svg viewBox="0 0 24 24"><path d="M9 8l-4 4 4 4M15 8l4 4-4 4"/></svg>
+      <div>
+        <h3>On the shoulders of giants</h3>
+        <p>We build new keys because better men taught us how. Preserving theirs is how we say thank you &mdash; and how we earn our place in the line.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h2>Have a lost key<br /><em>worth saving?</em></h2>
+    <p>If you own &mdash; or know of &mdash; a key that&rsquo;s no longer made and deserves to be preserved, we&rsquo;d be honored to measure it and add it to the archive.</p>
+    <a class="btn" href="/">
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      Get in touch
+    </a>
+  </div>
+
+  <footer>
+    <a href="https://unobtainiumkeys.com">unobtainiumkeys.com</a>
+    <span class="sep" aria-hidden="true">&middot;</span>
+    <a href="/who-we-are.html">Who we are</a>
+    <span class="sep" aria-hidden="true">&middot;</span>
+    <a href="/unobtainium-project.html">The Project</a>
+    <span class="sep" aria-hidden="true">&middot;</span>
+    <a href="/warranty.html">Warranty</a>
+  </footer>
+
+ </div>
+</body>
+</html>
