@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Unobtainium Project — Unobtainium Keys</title>
+<meta name="description" content="Free, solid CAD models of legendary CW keys that no longer exist — preserved so operators can build cases, replacement paddles, and keep silent keys on the air." />
+
+<meta property="og:title" content="The Unobtainium Project — Unobtainium Keys" />
+<meta property="og:description" content="Preserving the legendary keys that came before us. Free, solid CAD models for builders, restorers, and the operators who keep the legacy on the air." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --ink: #ffffff;
+    --muted: #8a8a8a;
+    --soft: #b9b9b9;
+    --line: rgba(255, 255, 255, 0.55);
+    --hair: rgba(255, 255, 255, 0.14);
+    --panel: rgba(255, 255, 255, 0.035);
+    --bg: #000000;
+    --todo: #c9a36b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Jost', 'Century Gothic', system-ui, sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.6;
+    padding: 0 24px 10vh;
+  }
+
+  .wrap { width: 100%; max-width: 760px; margin: 0 auto; }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 0 0;
+  }
+  .mark { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+  .mark .chip {
+    width: 40px; height: 40px;
+    border: 1.5px solid var(--line);
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; font-weight: 300; letter-spacing: -0.01em;
+  }
+  .mark .wordmark { font-size: 14px; font-weight: 300; letter-spacing: 0.26em; text-transform: uppercase; }
+  .back {
+    font-size: 12px; font-weight: 300; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--muted); text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .back:hover { color: var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    text-align: center;
+    padding: clamp(48px, 12vh, 110px) 0 clamp(40px, 7vh, 64px);
+    border-bottom: 1px solid var(--hair);
+  }
+  .eyebrow {
+    font-size: 12px; font-weight: 400; letter-spacing: 0.42em;
+    text-indent: 0.42em; color: var(--muted); text-transform: uppercase;
+  }
+  .hero h1 {
+    margin-top: 20px;
+    font-size: clamp(30px, 6.5vw, 50px);
+    font-weight: 200; line-height: 1.1; letter-spacing: 0.01em;
+  }
+  .hero h1 em { font-style: normal; font-weight: 400; }
+  .hero .sub {
+    margin: 18px auto 0; max-width: 520px;
+    font-size: clamp(15px, 4vw, 18px); font-weight: 300; color: var(--soft);
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 9px;
+    margin-top: 26px; padding: 9px 18px;
+    border: 1px solid var(--hair); border-radius: 999px;
+    font-size: 12px; font-weight: 400; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--soft);
+  }
+  .badge svg { width: 15px; height: 15px; stroke: var(--soft); fill: none; stroke-width: 1.5; }
+
+  /* ---------- Story ---------- */
+  .story { padding: clamp(36px, 6vh, 56px) 0; border-bottom: 1px solid var(--hair); }
+  .story h2, .archive h2, .how h2, .values h2, .terms h2 {
+    font-size: 13px; font-weight: 400; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--ink); margin-bottom: 18px;
+  }
+  .story p { font-size: 16px; font-weight: 300; color: var(--soft); line-height: 1.85; }
+  .story p + p { margin-top: 16px; }
+  .story em { font-style: normal; color: var(--ink); font-weight: 400; }
+  .pull {
+    margin: 30px 0 4px; padding: 4px 0 4px 22px;
+    border-left: 2px solid var(--line);
+    font-size: clamp(18px, 4.6vw, 22px); font-weight: 200;
+    line-height: 1.5; color: var(--ink); letter-spacing: 0.01em;
+  }
+
+  /* ---------- Archive (featured keys) ---------- */
+  .archive { padding: clamp(36px, 6vh, 56px) 0; border-bottom: 1px solid var(--hair); }
+  .archive .lead { font-size: 15px; font-weight: 300; color: var(--muted); margin-bottom: 22px; max-width: 540px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .key {
+    border: 1px solid var(--hair);
+    border-radius: 16px;
+    padding: 24px 22px;
+    background: var(--panel);
+    display: flex; flex-direction: column;
+  }
+  .key .glyph {
+    width: 46px; height: 46px; border-radius: 11px;
+    border: 1.5px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .key .glyph svg { width: 24px; height: 24px; stroke: var(--soft); fill: none; stroke-width: 1.3; }
+  .key .model { font-size: 17px; font-weight: 400; letter-spacing: 0.04em; }
+  .key .maker {
+    font-size: 12px; font-weight: 400; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--muted); margin: 4px 0 12px;
+  }
+  .key .desc { font-size: 13.5px; font-weight: 300; color: var(--soft); line-height: 1.7; }
+  .key .status {
+    margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--hair);
+    font-size: 11.5px; font-weight: 400; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .key .status.live { color: #cfe8cf; }
+
+  /* ---------- How it works ---------- */
+  .how { padding: clamp(36px, 6vh, 56px) 0; border-bottom: 1px solid var(--hair); }
+  .steprow {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 20px 0; border-bottom: 1px solid var(--hair);
+  }
+  .steprow:last-child { border-bottom: none; }
+  .steprow .num {
+    flex: none; width: 30px; height: 30px; border-radius: 50%;
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 400; color: var(--soft); margin-top: 1px;
+  }
+  .steprow h3 { font-size: 15px; font-weight: 400; letter-spacing: 0.05em; margin-bottom: 5px; }
+  .steprow p { font-size: 14.5px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+  /* ---------- Values ---------- */
+  .values { padding: clamp(36px, 6vh, 56px) 0; }
+  .vrow {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 20px 0; border-bottom: 1px solid var(--hair);
+  }
+  .vrow:last-child { border-bottom: none; }
+  .vrow svg { width: 22px; height: 22px; stroke: var(--ink); fill: none; stroke-width: 1.3; opacity: 0.9; flex: none; margin-top: 2px; }
+  .vrow h3 { font-size: 15px; font-weight: 400; letter-spacing: 0.05em; margin-bottom: 5px; }
+  .vrow p { font-size: 14.5px; font-weight: 300; color: var(--muted); line-height: 1.65; }
+
+  /* ---------- Download button (in archive cards) ---------- */
+  .dl-btn {
+    margin-top: 16px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    width: 100%;
+    background: var(--ink); color: #000;
+    border: 1px solid var(--ink); border-radius: 999px;
+    font-family: inherit; font-size: 12.5px; font-weight: 400;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 11px 18px; cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+  }
+  .dl-btn:hover { opacity: 0.85; }
+  .dl-btn:active { transform: scale(0.98); }
+  .dl-btn svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+
+  /* ---------- Agreement modal ---------- */
+  .modal {
+    position: fixed; inset: 0; z-index: 50;
+    display: none; align-items: center; justify-content: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.72);
+    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  }
+  .modal.open { display: flex; }
+  .modal-card {
+    width: 100%; max-width: 480px; max-height: 88vh; overflow-y: auto;
+    background: #0a0a0a; border: 1px solid var(--hair);
+    border-radius: 18px; padding: 30px 28px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  }
+  .modal-eyebrow {
+    font-size: 11px; font-weight: 400; letter-spacing: 0.32em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .modal-card h2 {
+    margin-top: 12px; font-size: clamp(20px, 5vw, 25px);
+    font-weight: 200; line-height: 1.2; letter-spacing: 0.01em;
+  }
+  .modal-card h2 em { font-style: normal; font-weight: 400; }
+  .modal-card .lead { margin-top: 12px; font-size: 14px; font-weight: 300; color: var(--soft); line-height: 1.7; }
+  .agree {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin: 22px 0 6px; padding: 16px 16px;
+    border: 1px solid var(--hair); border-radius: 12px;
+    background: var(--panel); cursor: pointer;
+  }
+  .agree input {
+    flex: none; width: 20px; height: 20px; margin-top: 1px;
+    accent-color: #fff; cursor: pointer;
+  }
+  .agree span { font-size: 13.5px; font-weight: 300; color: var(--soft); line-height: 1.6; }
+  .agree span em { font-style: normal; color: var(--ink); font-weight: 400; }
+  .modal-actions { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+  .modal-actions .btn-confirm {
+    flex: 1 1 200px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    background: var(--ink); color: #000;
+    border: 1px solid var(--ink); border-radius: 999px;
+    font-family: inherit; font-size: 13px; font-weight: 400;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 13px 22px; cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+  }
+  .modal-actions .btn-confirm svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+  .modal-actions .btn-confirm:hover { opacity: 0.85; }
+  .modal-actions .btn-confirm:disabled {
+    opacity: 0.3; cursor: not-allowed; transform: none;
+  }
+  .modal-actions .btn-cancel {
+    background: transparent; color: var(--muted);
+    border: 1px solid var(--hair); border-radius: 999px;
+    font-family: inherit; font-size: 13px; font-weight: 300;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 13px 22px; cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .modal-actions .btn-cancel:hover { color: var(--ink); border-color: var(--line); }
+  .modal-fine {
+    margin-top: 18px; font-size: 11.5px; letter-spacing: 0.03em;
+    color: #5a5a5a; line-height: 1.6;
+  }
+  .modal-fine a { color: var(--muted); }
+
+  /* ---------- Terms / disclaimer ---------- */
+  .terms { padding: clamp(36px, 6vh, 56px) 0; border-top: 1px solid var(--hair); }
+  .terms .panel {
+    background: var(--panel); border: 1px solid var(--hair);
+    border-radius: 16px; padding: 26px 26px;
+  }
+  .terms h3 {
+    font-size: 13.5px; font-weight: 400; letter-spacing: 0.04em;
+    color: var(--ink); margin: 20px 0 6px;
+  }
+  .terms h3:first-of-type { margin-top: 0; }
+  .terms p { font-size: 13.5px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+  .terms .fine {
+    margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--hair);
+    font-size: 11.5px; letter-spacing: 0.04em; color: #5a5a5a; line-height: 1.6;
+  }
+
+  /* ---------- CTA ---------- */
+  .cta { text-align: center; padding: clamp(44px, 8vh, 72px) 0 clamp(20px, 4vh, 40px); }
+  .cta h2 {
+    font-size: clamp(22px, 5vw, 30px); font-weight: 200;
+    line-height: 1.2; margin-bottom: 14px; letter-spacing: 0.01em;
+  }
+  .cta h2 em { font-style: normal; font-weight: 400; }
+  .cta p { font-size: 14px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 22px; max-width: 460px; margin-left: auto; margin-right: auto; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--ink); color: #000; border-radius: 999px;
+    font-size: 14px; font-weight: 400; letter-spacing: 0.16em;
+    text-transform: uppercase; padding: 14px 28px; text-decoration: none;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:active { transform: scale(0.98); }
+  .btn svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    text-align: center; padding-top: 36px; border-top: 1px solid var(--hair);
+    font-size: 13px; font-weight: 300; letter-spacing: 0.22em; color: #6f6f6f;
+  }
+  footer a { color: inherit; text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+  footer .sep { margin: 0 12px; color: #4a4a4a; }
+
+  @media (max-width: 380px) {
+    .key, .topbar .wordmark { border-radius: 12px; }
+    .topbar .wordmark { display: none; }
+  }
+</style>
+</head>
+<body>
+ <div class="wrap">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <a class="mark" href="/" aria-label="Unobtainium Keys home">
+      <span class="chip">Un</span>
+      <span class="wordmark">Unobtainium Keys</span>
+    </a>
+    <a class="back" href="/">&larr; Home</a>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <p class="eyebrow">The Unobtainium Project</p>
+    <h1>The keys are gone.<br /><em>The legacy isn&rsquo;t.</em></h1>
+    <p class="sub">A growing archive of solid, true-to-life CAD models of legendary CW keys that no longer exist &mdash; preserved and given freely, so the keys that came before us never truly fall silent.</p>
+    <span class="badge">
+      <svg viewBox="0 0 24 24"><path d="M12 3v8M8.5 7.5 12 11l3.5-3.5M5 14v5h14v-5"/></svg>
+      Free to download &mdash; for non-commercial use
+    </span>
+  </header>
+
+  <!-- Story -->
+  <section class="story">
+    <h2>Why we built this</h2>
+    <p>Every operator who keys up today is standing on the shoulders of giants. The benchmakers and basement machinists, the engineers who chased a perfect contact across a lifetime, the elmers who handed down a paddle along with the patience to use it &mdash; they built the feel we all reach for. Many of them are <em>silent keys</em> now. Their workbenches went quiet; their tooling was scattered; and one by one, the keys they made slipped out of the world.</p>
+    <p>A great key is not just brass and steel. It is the distilled judgment of the man who made it &mdash; the radius he settled on after a thousand contacts, the heft he chose because it felt right under a working fist. When the last of a model crumbles, restoration becomes guesswork, and a piece of the craft is lost for good. We refuse to let that happen quietly.</p>
+
+    <p class="pull">We cannot bring the makers back. But we can keep their work measured, honored, and within reach &mdash; so no operator ever has to let a legend rot for want of a single missing paddle.</p>
+
+    <p>So we measure them. We reverse-engineer the survivors &mdash; calipers, scans, and stubborn patience &mdash; and rebuild each one as a clean, solid CAD model, dimensioned the way its maker would have drawn it. Then we give it away. No paywall, no gatekeeping. This is our way of repaying a debt to the men who came before us, and of putting something back into the hobby that gave us so much.</p>
+  </section>
+
+  <!-- Archive -->
+  <section class="archive">
+    <h2>The archive</h2>
+    <p class="lead">Solid models you can drop straight into your CAD package &mdash; build a case, machine a replacement paddle, restore a relic, or simply study how the greats did it.</p>
+    <div class="grid">
+
+      <div class="key">
+        <div class="glyph"><svg viewBox="0 0 24 24"><path d="M3 14h7l2-3 5 3h4M6 14v3M18 17v-3"/><circle cx="6" cy="11" r="2"/></svg></div>
+        <div class="model">TP-3</div>
+        <div class="maker">No longer produced</div>
+        <div class="desc">A revered twin-paddle that hasn&rsquo;t been made in years. Rebuilt as a true solid model so its cases and paddles can live on.</div>
+        <button class="dl-btn"
+                data-download="/models/tp-3.step"
+                data-model="TP-3">
+          <svg viewBox="0 0 24 24"><path d="M12 3v11M8 10.5 12 14l4-3.5M5 16v4h14v-4"/></svg>
+          Download model
+        </button>
+      </div>
+
+      <div class="key">
+        <div class="glyph"><svg viewBox="0 0 24 24"><path d="M4 16h16M7 16v-4l5-2 5 2v4"/><circle cx="12" cy="7" r="1.5"/></svg></div>
+        <div class="model">More to come</div>
+        <div class="maker">In the works</div>
+        <div class="desc">We&rsquo;re measuring and modeling more lost keys as we get our hands on clean survivors. Have one worth saving? Reach out.</div>
+        <div class="status">&bull; On the bench</div>
+      </div>
+
+      <div class="key">
+        <div class="glyph"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 8l7-5 7 5M5 8v8l7 5 7-5V8"/></svg></div>
+        <div class="model">Nominate a key</div>
+        <div class="maker">Community-led</div>
+        <div class="desc">The archive grows by the hobby, for the hobby. Tell us which silent legend deserves to be preserved next.</div>
+        <div class="status">&bull; Open call</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how">
+    <h2>How to use the models</h2>
+
+    <div class="steprow">
+      <div class="num">1</div>
+      <div>
+        <h3>Download the solid model</h3>
+        <p>Each key is shared as a watertight solid &mdash; true geometry, not a hollow mesh &mdash; ready to open in the CAD tool you already use.</p>
+      </div>
+    </div>
+
+    <div class="steprow">
+      <div class="num">2</div>
+      <div>
+        <h3>Build, fit, or restore</h3>
+        <p>Reference the exact dimensions to machine a replacement paddle, design a custom base or case, or 3D-print a part that&rsquo;s no longer sold anywhere on earth.</p>
+      </div>
+    </div>
+
+    <div class="steprow">
+      <div class="num">3</div>
+      <div>
+        <h3>Put a legend back on the air</h3>
+        <p>Bring a tired key back to life, or carry its lines forward into something new. Either way, the maker&rsquo;s work keys up again.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="values">
+    <h2>The pact we keep</h2>
+
+    <div class="vrow">
+      <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9-9a4.5 4.5 0 0 1 8.1-2.7l.9 1.2.9-1.2A4.5 4.5 0 0 1 21 12c-2 4.5-9 9-9 9z"/></svg>
+      <div>
+        <h3>Honor the silent keys</h3>
+        <p>Every model is a small act of remembrance &mdash; the work of an SK, measured with respect and carried forward intact.</p>
+      </div>
+    </div>
+
+    <div class="vrow">
+      <svg viewBox="0 0 24 24"><path d="M12 3v8M8.5 7.5 12 11l3.5-3.5M5 14v5h14v-5"/></svg>
+      <div>
+        <h3>Free, and freely given</h3>
+        <p>No paywall stands between an operator and a part he needs. We give these models back to the community, the way the craft was given to us.</p>
+      </div>
+    </div>
+
+    <div class="vrow">
+      <svg viewBox="0 0 24 24"><path d="M3 21V8l5-3 5 3M13 21V11l4-2 4 2v10M3 21h18M7 12v2M17 14v2"/></svg>
+      <div>
+        <h3>Faithful to the maker</h3>
+        <p>We model what was, not what we&rsquo;d change. The geometry stays true to the original so restorations stay honest.</p>
+      </div>
+    </div>
+
+    <div class="vrow">
+      <svg viewBox="0 0 24 24"><path d="M9 8l-4 4 4 4M15 8l4 4-4 4"/></svg>
+      <div>
+        <h3>On the shoulders of giants</h3>
+        <p>We build new keys because better men taught us how. Preserving theirs is how we say thank you &mdash; and how we earn our place in the line.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Terms / disclaimer -->
+  <section class="terms" id="terms">
+    <h2>The fine print</h2>
+    <div class="panel">
+      <h3>Free for non-commercial use</h3>
+      <p>These models are offered free of charge for personal, non-commercial projects &mdash; restoring your own key, building a case or paddle for your own station, learning, and tinkering. They are not to be sold, nor used to manufacture keys or parts for sale, without separate written permission.</p>
+
+      <h3>We don&rsquo;t own these designs</h3>
+      <p>The original keys are the work and property of their respective makers. We claim no ownership of, affiliation with, or endorsement by any original manufacturer, brand, or estate. Names and models are referenced only to identify the hardware being preserved. Our CAD files are independent reconstructions created for documentation and repair, and any trademarks remain the property of their owners.</p>
+
+      <h3>Provided &ldquo;as is&rdquo;</h3>
+      <p>Every model is shared &ldquo;as is,&rdquo; without warranty of any kind &mdash; express or implied &mdash; including accuracy, fitness for a particular purpose, or non-infringement. Dimensions are our best effort and may differ from any original. You are responsible for verifying everything before you cut, print, or machine anything.</p>
+
+      <h3>You assume the risk</h3>
+      <p>By downloading or using a model you accept full responsibility for how you use it, including ensuring you have the right to reproduce any given design in your jurisdiction. To the fullest extent permitted by law, Unobtainium Keys and its members are not liable for any loss, damage, or claim arising from the use of these files, and you agree to hold us harmless from any such claim.</p>
+
+      <p class="fine">Spot an error, or believe a model infringes rights you hold? Reach out and we&rsquo;ll correct or remove it promptly. This notice is a plain-language summary of the terms of use, not legal advice.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h2>Have a lost key<br /><em>worth saving?</em></h2>
+    <p>If you own &mdash; or know of &mdash; a key that&rsquo;s no longer made and deserves to be preserved, we&rsquo;d be honored to measure it and add it to the archive.</p>
+    <a class="btn" href="/">
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      Get in touch
+    </a>
+  </div>
+
+  <footer>
+    <a href="https://unobtainiumkeys.com">unobtainiumkeys.com</a>
+    <span class="sep" aria-hidden="true">&middot;</span>
+    <a href="/who-we-are.html">Who we are</a>
+    <span class="sep" aria-hidden="true">&middot;</span>
+    <a href="/unobtainium-project.html">The Project</a>
+    <span class="sep" aria-hidden="true">&middot;</span>
+    <a href="/warranty.html">Warranty</a>
+  </footer>
+
+ </div>
+
+ <!-- Agreement gate (shown before any model downloads) -->
+ <div class="modal" id="dlModal" role="dialog" aria-modal="true" aria-labelledby="dlTitle" aria-hidden="true">
+   <div class="modal-card">
+     <p class="modal-eyebrow">Before you download</p>
+     <h2 id="dlTitle">One handshake, <em>operator to operator.</em></h2>
+     <p class="lead">You&rsquo;re about to download <strong id="dlModelName">this model</strong>. These files are shared in good faith to keep a silent key alive &mdash; please honor the spirit they&rsquo;re given in.</p>
+
+     <label class="agree" for="dlAgree">
+       <input type="checkbox" id="dlAgree" />
+       <span>I agree that I am downloading these designs <em>purely for personal, non-commercial use</em>, that I will <em>not share, redistribute, or sell</em> them, and that I accept the <a href="#terms" style="color:#b9b9b9;">terms of use</a> &mdash; the files are provided &ldquo;as is,&rdquo; with no warranty, and I use them at my own risk.</span>
+     </label>
+
+     <div class="modal-actions">
+       <button type="button" class="btn-confirm" id="dlConfirm" disabled>
+         <svg viewBox="0 0 24 24"><path d="M12 3v11M8 10.5 12 14l4-3.5M5 16v4h14v-4"/></svg>
+         Agree &amp; download
+       </button>
+       <button type="button" class="btn-cancel" id="dlCancel">Cancel</button>
+     </div>
+
+     <p class="modal-fine">Rights holders: if a model infringes rights you hold, <a href="mailto:hello@unobtainiumkeys.com?subject=Unobtainium%20Project%20takedown">let us know</a> and we&rsquo;ll remove it promptly. This summary is the terms of use, not legal advice.</p>
+   </div>
+ </div>
+
+ <script>
+   (function () {
+     var modal   = document.getElementById('dlModal');
+     var nameEl  = document.getElementById('dlModelName');
+     var agree   = document.getElementById('dlAgree');
+     var confirm = document.getElementById('dlConfirm');
+     var cancel  = document.getElementById('dlCancel');
+     var pending = null;        // { url, model } awaiting confirmation
+     var lastFocus = null;
+
+     function open(url, model) {
+       pending = { url: url, model: model };
+       nameEl.textContent = model || 'this model';
+       agree.checked = false;
+       confirm.disabled = true;
+       lastFocus = document.activeElement;
+       modal.classList.add('open');
+       modal.setAttribute('aria-hidden', 'false');
+       agree.focus();
+     }
+
+     function close() {
+       modal.classList.remove('open');
+       modal.setAttribute('aria-hidden', 'true');
+       pending = null;
+       if (lastFocus && lastFocus.focus) lastFocus.focus();
+     }
+
+     // Wire every download button on the page.
+     document.querySelectorAll('.dl-btn[data-download]').forEach(function (btn) {
+       btn.addEventListener('click', function () {
+         open(btn.getAttribute('data-download'), btn.getAttribute('data-model'));
+       });
+     });
+
+     agree.addEventListener('change', function () {
+       confirm.disabled = !agree.checked;
+     });
+
+     confirm.addEventListener('click', function () {
+       if (!pending || !agree.checked) return;
+       var url = pending.url;
+       var file = url.split('/').pop();
+       // Trigger the download, then record consent in this browser.
+       var a = document.createElement('a');
+       a.href = url;
+       a.download = file;
+       a.rel = 'noopener';
+       document.body.appendChild(a);
+       a.click();
+       a.remove();
+       try {
+         localStorage.setItem('up_agreed_' + (pending.model || file),
+           new Date().toISOString());
+       } catch (e) { /* storage may be unavailable; not required */ }
+       close();
+     });
+
+     cancel.addEventListener('click', close);
+     modal.addEventListener('click', function (e) {
+       if (e.target === modal) close();   // click backdrop to dismiss
+     });
+     document.addEventListener('keydown', function (e) {
+       if (e.key === 'Escape' && modal.classList.contains('open')) close();
+     });
+   })();
+ </script>
+</body>
+</html>
